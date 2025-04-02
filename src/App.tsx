@@ -24,7 +24,7 @@ function App() {
                 <Projects />
                 <Blog />
                 <Contact />
-                <Footer/>
+                
               </>
             } />
             <Route path="/about" element={<About />} />
@@ -35,6 +35,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </main>
+        <Footer/>
       </div>
     </Router>
   );

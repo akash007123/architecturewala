@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { useState } from "react";
+import axios from "axios";
 import { 
   MapPin, 
   Phone, 
@@ -9,26 +11,54 @@ import {
 } from 'lucide-react';
 
 const Contact = () => {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
+  const [formData, setFormData] = useState({
+      firstName: "",
+      lastName: "",
+      email: "",
+      mobile: "",
+      message: "",
   });
+
+  
+  const { ref, inView } = useInView({ triggerOnce: true });
+
+  const handleChange = (e) => {
+      setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+      e.preventDefault();
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        mobile: "",
+        message: "",
+      });
+      try {
+          const response = await axios.post("http://localhost:5000/send-email", formData);
+          alert(response.data.message);
+      } catch (error) {
+          console.error("Error sending message:", error);
+          alert("Failed to send message. Try again later.");
+      }
+  };
 
   const contactInfo = [
     {
       icon: MapPin,
       title: 'Visit Us',
-      details: ['123 Architecture Avenue', 'Design District, NY 10001']
+      details: ['Anand Nagar, Vasant vihar, Ujjain MP 456010 INDIA']
     },
     {
       icon: Phone,
       title: 'Call Us',
-      details: ['+1 (555) 123-4567', 'Mon-Fri, 9am-6pm']
+      details: ['+91-9685533878', 'Mon-Fri, 9am-6pm']
     },
     {
       icon: Mail,
       title: 'Email Us',
-      details: ['info@archvision.com', 'support@archvision.com']
+      details: ['akashraikwar763@gmail.com', 'akashraikwar7633@gmail.com']
     },
     {
       icon: Clock,
@@ -62,7 +92,7 @@ const Contact = () => {
               className="bg-white rounded-lg shadow-lg p-8"
             >
               <h3 className="text-2xl font-bold text-gray-900 mb-6">Send us a Message</h3>
-              <form className="space-y-6">
+              <form className="space-y-6" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -70,7 +100,11 @@ const Contact = () => {
                     </label>
                     <input
                       type="text"
+                      name="firstName"
+                      value={formData.firstName}
+                      onChange={handleChange}
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent"
+                      required
                     />
                   </div>
                   <div>
@@ -79,9 +113,26 @@ const Contact = () => {
                     </label>
                     <input
                       type="text"
+                      name="lastName"
+                      value={formData.lastName}
+                      onChange={handleChange}
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent"
+                      required
                     />
                   </div>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Mobile
+                  </label>
+                  <input
+                    type="number"
+                    name="mobile"
+                    value={formData.mobile}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent"
+                    required
+                  />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -89,7 +140,11 @@ const Contact = () => {
                   </label>
                   <input
                     type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent"
+                    required
                   />
                 </div>
                 <div>
@@ -98,7 +153,11 @@ const Contact = () => {
                   </label>
                   <textarea
                     rows={4}
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent"
+                    required
                   ></textarea>
                 </div>
                 <button
@@ -133,18 +192,6 @@ const Contact = () => {
               ))}
             </div>
           </motion.div>
-        </div>
-
-        <div className="rounded-lg overflow-hidden shadow-lg h-96">
-          <iframe
-            title="Office Location"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.15830869428!2d-74.119763973046!3d40.69766374874431!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2s!4v1645890124885!5m2!1sen!2s"
-            width="100%"
-            height="100%"
-            style={{ border: 0 }}
-            allowFullScreen
-            loading="lazy"
-          ></iframe>
         </div>
       </div>
     </section>

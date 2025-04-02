@@ -25,7 +25,7 @@ const Header = () => {
   ];
 
   return (
-    <header className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-lg' : 'bg-transparent'}`}>
+    <header className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-lg' : 'bg-transparent '}`}>
       <nav className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <NavLink to="/" className="flex items-center space-x-2">
@@ -40,16 +40,18 @@ const Header = () => {
                 to={item.path}
                 className={({ isActive }) =>
                   `text-sm font-medium transition-colors duration-300 ${
-                    isActive ? 'text-gray-800' : 'text-gray-600 hover:text-gray-800'
+                    isActive ? 'text-gray-900' : 'text-gray-900 hover:text-gray-100'
                   }`
                 }
               >
                 {item.label}
               </NavLink>
             ))}
+            <a href="/schedule">
             <button className="bg-gray-800 text-white px-6 py-2 rounded-full hover:bg-gray-700 transition-colors duration-300">
               Schedule Consultation
             </button>
+            </a>
           </div>
 
           <button

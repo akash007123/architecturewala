@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Calendar, Clock, Users, MessageSquare, CheckCircle } from 'lucide-react';
@@ -9,8 +9,16 @@ const Schedule = () => {
     threshold: 0.1,
   });
 
-  const [selectedDate, setSelectedDate] = useState('');
-  const [selectedTime, setSelectedTime] = useState('');
+  const [formData, setFormData] = useState({
+    name: '',
+    mobile: '',
+    email: '',
+    date: '',
+    time: '',
+    projectDetails: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState({ success: null, message: '' });
 
   const timeSlots = [
     '09:00 AM', '10:00 AM', '11:00 AM',
@@ -41,6 +49,51 @@ const Schedule = () => {
     }
   ];
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus({ success: null, message: '' });
+
+    try {
+      const response = await fetch('http://localhost:5000/api/schedule', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setSubmitStatus({ success: true, message: data.message });
+        // Reset form
+        setFormData({
+          name: '',
+          mobile: '',
+          email: '',
+          date: '',
+          time: '',
+          projectDetails: ''
+        });
+      } else {
+        setSubmitStatus({ success: false, message: data.message });
+      }
+    } catch (error) {
+      setSubmitStatus({ success: false, message: 'Failed to submit form. Please try again.' });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <section className="py-20 bg-white" ref={ref}>
       <div className="container mx-auto px-4">
@@ -65,15 +118,38 @@ const Schedule = () => {
             className="bg-gray-50 p-8 rounded-xl shadow-lg"
           >
             <h3 className="text-2xl font-bold text-gray-900 mb-6">Book Your Session</h3>
-            <form className="space-y-6">
+            {submitStatus.success !== null && (
+              <div className={`mb-6 p-4 rounded-lg ${submitStatus.success ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
+                {submitStatus.message}
+              </div>
+            )}
+            <form className="space-y-6" onSubmit={handleSubmit}>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Full Name
                 </label>
                 <input
                   type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent"
-                  placeholder="John Doe"
+                  placeholder="Akash Raikwar"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Mobile
+                </label>
+                <input
+                  type="tel"
+                  name="mobile"
+                  value={formData.mobile}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent"
+                  placeholder="+919999999999"
+                  required
                 />
               </div>
               <div>
@@ -82,8 +158,12 @@ const Schedule = () => {
                 </label>
                 <input
                   type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent"
-                  placeholder="john@example.com"
+                  placeholder="akashraikwar763@gmail.com"
+                  required
                 />
               </div>
               <div>
@@ -93,9 +173,11 @@ const Schedule = () => {
                 </label>
                 <input
                   type="date"
-                  value={selectedDate}
-                  onChange={(e) => setSelectedDate(e.target.value)}
+                  name="date"
+                  value={formData.date}
+                  onChange={handleChange}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent"
+                  required
                 />
               </div>
               <div>
@@ -104,9 +186,11 @@ const Schedule = () => {
                   Preferred Time
                 </label>
                 <select
-                  value={selectedTime}
-                  onChange={(e) => setSelectedTime(e.target.value)}
+                  name="time"
+                  value={formData.time}
+                  onChange={handleChange}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent"
+                  required
                 >
                   <option value="">Select a time slot</option>
                   {timeSlots.map((time) => (
@@ -120,15 +204,19 @@ const Schedule = () => {
                 </label>
                 <textarea
                   rows={4}
+                  name="projectDetails"
+                  value={formData.projectDetails}
+                  onChange={handleChange}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent"
                   placeholder="Tell us about your project..."
                 />
               </div>
               <button
                 type="submit"
-                className="w-full bg-gray-900 text-white px-8 py-3 rounded-lg hover:bg-gray-800 transition-colors duration-300"
+                disabled={isSubmitting}
+                className="w-full bg-gray-900 text-white px-8 py-3 rounded-lg hover:bg-gray-800 transition-colors duration-300 disabled:opacity-70 disabled:cursor-not-allowed"
               >
-                Schedule Consultation
+                {isSubmitting ? 'Scheduling...' : 'Schedule Consultation'}
               </button>
             </form>
           </motion.div>

@@ -28,6 +28,15 @@ const Blog = () => {
       readTime: '4 min read'
     },
     {
+      title: 'The Future of Sustainable Architecture',
+      excerpt: 'Exploring innovative sustainable design practices and their impact on modern architecture.',
+      image: 'https://images.unsplash.com/photo-1518780664697-55e3ad937233?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+      date: 'Mar 15, 2024',
+      author: 'Sarah Johnson',
+      category: 'Sustainability',
+      readTime: '5 min read'
+    },
+    {
       title: 'Minimalism in Modern Architecture',
       excerpt: 'Understanding the principles and applications of minimalist design in contemporary buildings.',
       image: 'https://images.unsplash.com/photo-1511818966892-d7d671e672a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
@@ -35,12 +44,30 @@ const Blog = () => {
       author: 'Emma Davis',
       category: 'Design',
       readTime: '6 min read'
-    }
+    },
+    {
+      title: 'The Future of Sustainable Architecture',
+      excerpt: 'Exploring innovative sustainable design practices and their impact on modern architecture.',
+      image: 'https://images.unsplash.com/photo-1518780664697-55e3ad937233?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+      date: 'Mar 15, 2024',
+      author: 'Sarah Johnson',
+      category: 'Sustainability',
+      readTime: '5 min read'
+    },
+    {
+      title: 'Minimalism in Modern Architecture',
+      excerpt: 'Understanding the principles and applications of minimalist design in contemporary buildings.',
+      image: 'https://images.unsplash.com/photo-1511818966892-d7d671e672a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+      date: 'Mar 10, 2024',
+      author: 'Emma Davis',
+      category: 'Design',
+      readTime: '6 min read'
+    },
   ];
 
-  const categories = [
-    'All', 'Sustainability', 'Technology', 'Design', 'Innovation', 'Interior Design'
-  ];
+  // const categories = [
+  //   'All', 'Sustainability', 'Technology', 'Design', 'Innovation', 'Interior Design'
+  // ];
 
   return (
     <section className="py-20 bg-gray-50" ref={ref}>
@@ -57,7 +84,7 @@ const Blog = () => {
           </p>
         </motion.div>
 
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
+        {/* <div className="flex flex-wrap justify-center gap-4 mb-12">
           {categories.map((category, index) => (
             <motion.button
               key={index}
@@ -69,7 +96,7 @@ const Blog = () => {
               {category}
             </motion.button>
           ))}
-        </div>
+        </div> */}
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {blogPosts.map((post, index) => (
@@ -122,10 +149,10 @@ const Blog = () => {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="text-center mt-12"
         >
-          <button className="bg-gray-900 text-white px-8 py-3 rounded-full hover:bg-gray-800 transition-colors duration-300 inline-flex items-center">
+          {/* <button className="bg-gray-900 text-white px-8 py-3 rounded-full hover:bg-gray-800 transition-colors duration-300 inline-flex items-center">
             View All Articles
             <ArrowRight className="h-5 w-5 ml-2" />
-          </button>
+          </button> */}
         </motion.div>
       </div>
     </section>
