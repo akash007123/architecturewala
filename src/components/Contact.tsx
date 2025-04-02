@@ -36,7 +36,7 @@ const Contact = () => {
         message: "",
       });
       try {
-          const response = await axios.post("http://localhost:5000/send-email", formData);
+          const response = await axios.post("https://architecturewala-backend.onrender.com/send-email", formData);
           alert(response.data.message);
       } catch (error) {
           console.error("Error sending message:", error);
