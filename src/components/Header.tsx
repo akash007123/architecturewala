@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Menu, X, Building2 } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -33,7 +33,6 @@ const Header = () => {
             <span className="text-xl font-bold text-gray-800">ArchVision</span>
           </NavLink>
 
-          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
               <NavLink
@@ -53,7 +52,6 @@ const Header = () => {
             </button>
           </div>
 
-          {/* Mobile Menu Button */}
           <button
             className="md:hidden text-gray-800"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -62,7 +60,6 @@ const Header = () => {
           </button>
         </div>
 
-        {/* Mobile Navigation */}
         {isMenuOpen && (
           <motion.div
             initial={{ opacity: 0, y: -20 }}

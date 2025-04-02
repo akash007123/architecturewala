@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -8,6 +7,7 @@ import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Schedule from './components/Schedule';
 import Blog from './components/Blog';
+import { Footer } from './components/Footer';
 
 function App() {
   return (
@@ -24,6 +24,7 @@ function App() {
                 <Projects />
                 <Blog />
                 <Contact />
+                <Footer/>
               </>
             } />
             <Route path="/about" element={<About />} />

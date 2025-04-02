@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { 
@@ -136,7 +135,6 @@ const Contact = () => {
           </motion.div>
         </div>
 
-        {/* Map Section */}
         <div className="rounded-lg overflow-hidden shadow-lg h-96">
           <iframe
             title="Office Location"
