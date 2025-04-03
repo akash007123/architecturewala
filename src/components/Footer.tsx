@@ -1,191 +1,129 @@
-import { Link } from "react-router-dom";
-import { NavLink } from "react-router-dom";
-import {
-  Facebook,
-  Twitter,
-  Instagram,
-  Linkedin,
-  Mail,
-  Building2,
-} from "lucide-react";
+import { Link } from "wouter";
 
-export function Footer() {
+const Footer = () => {
   return (
-    <footer className="bg-stone-900 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div className="space-y-4">
-            <NavLink to="/" className="flex items-center space-x-2">
-              <Building2 className="h-8 w-16 text-white" />
-              <span className="text-2xl font-bold text-white">
-                ArchVision
-              </span>
-            </NavLink>
-            <p className="text-stone-400">
-              Creating innovative architectural solutions for a sustainable
-              future.
+    <footer className="bg-primary text-white pt-16 pb-8">
+      <div className="container mx-auto px-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+          <div>
+            <div className="mb-6">
+              <Link href="/">
+                <a className="text-white font-serif text-2xl font-bold">Arcology</a>
+              </Link>
+            </div>
+            <p className="text-neutral-300 mb-6">
+              Creating innovative architectural designs that transform spaces and enhance lives.
             </p>
             <div className="flex space-x-4">
-              <a
-                href="#"
-                className="text-stone-400 hover:text-white transition-colors"
-              >
-                <Facebook className="h-5 w-5" />
+              <a href="#" className="text-white hover:text-secondary transition-colors" aria-label="Instagram">
+                <i className='bx bxl-instagram text-xl'></i>
               </a>
-              <a
-                href="#"
-                className="text-stone-400 hover:text-white transition-colors"
-              >
-                <Twitter className="h-5 w-5" />
+              <a href="#" className="text-white hover:text-secondary transition-colors" aria-label="LinkedIn">
+                <i className='bx bxl-linkedin text-xl'></i>
               </a>
-              <a
-                href="#"
-                className="text-stone-400 hover:text-white transition-colors"
-              >
-                <Instagram className="h-5 w-5" />
+              <a href="#" className="text-white hover:text-secondary transition-colors" aria-label="Pinterest">
+                <i className='bx bxl-pinterest text-xl'></i>
               </a>
-              <a
-                href="#"
-                className="text-stone-400 hover:text-white transition-colors"
-              >
-                <Linkedin className="h-5 w-5" />
+              <a href="#" className="text-white hover:text-secondary transition-colors" aria-label="Twitter">
+                <i className='bx bxl-twitter text-xl'></i>
               </a>
             </div>
           </div>
-
+          
           <div>
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
-            <ul className="space-y-2">
+            <h3 className="text-white font-bold mb-6">Quick Links</h3>
+            <ul className="space-y-3">
               <li>
-                <Link
-                  to="/about"
-                  className="text-stone-400 hover:text-white transition-colors"
-                >
-                  About Us
+                <Link href="/about">
+                  <a className="text-neutral-300 hover:text-secondary transition-colors">About Us</a>
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/services"
-                  className="text-stone-400 hover:text-white transition-colors"
-                >
-                  Services
+                <Link href="/services">
+                  <a className="text-neutral-300 hover:text-secondary transition-colors">Services</a>
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/projects"
-                  className="text-stone-400 hover:text-white transition-colors"
-                >
-                  Projects
+                <Link href="/projects">
+                  <a className="text-neutral-300 hover:text-secondary transition-colors">Projects</a>
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/blog"
-                  className="text-stone-400 hover:text-white transition-colors"
-                >
-                  Blog
+                <Link href="/blog">
+                  <a className="text-neutral-300 hover:text-secondary transition-colors">Blog</a>
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/contact"
-                  className="text-stone-400 hover:text-white transition-colors"
-                >
-                  Contact
+                <Link href="/contact">
+                  <a className="text-neutral-300 hover:text-secondary transition-colors">Contact</a>
                 </Link>
               </li>
             </ul>
           </div>
-
-          {/* Services */}
+          
           <div>
-            <h3 className="text-lg font-semibold mb-4">Services</h3>
-            <ul className="space-y-2">
+            <h3 className="text-white font-bold mb-6">Services</h3>
+            <ul className="space-y-3">
               <li>
-                <Link
-                  to="/services"
-                  className="text-stone-400 hover:text-white transition-colors"
-                >
-                  Architectural Design
+                <Link href="/services#architectural-design">
+                  <a className="text-neutral-300 hover:text-secondary transition-colors">Architectural Design</a>
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/services"
-                  className="text-stone-400 hover:text-white transition-colors"
-                >
-                  Interior Design
+                <Link href="/services#interior-design">
+                  <a className="text-neutral-300 hover:text-secondary transition-colors">Interior Design</a>
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/services"
-                  className="text-stone-400 hover:text-white transition-colors"
-                >
-                  Project Management
+                <Link href="/services#urban-planning">
+                  <a className="text-neutral-300 hover:text-secondary transition-colors">Urban Planning</a>
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/services"
-                  className="text-stone-400 hover:text-white transition-colors"
-                >
-                  Renovation
+                <Link href="/services#sustainable-design">
+                  <a className="text-neutral-300 hover:text-secondary transition-colors">Sustainable Design</a>
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/services"
-                  className="text-stone-400 hover:text-white transition-colors"
-                >
-                  Consulting
+                <Link href="/services#project-management">
+                  <a className="text-neutral-300 hover:text-secondary transition-colors">Project Management</a>
                 </Link>
               </li>
             </ul>
           </div>
-
+          
           <div>
-            <h3 className="text-lg font-semibold mb-4">Contact</h3>
-            <ul className="space-y-2">
-              <li className="flex items-center text-stone-400">
-                <Mail className="h-5 w-5 mr-2" />
-                akashraikwar763@gmail.com
+            <h3 className="text-white font-bold mb-6">Contact</h3>
+            <ul className="space-y-3">
+              <li className="flex items-start">
+                <i className='bx bx-map text-secondary mr-3 mt-1'></i>
+                <span className="text-neutral-300">123 Architecture Avenue, Design District, New York, NY 10001</span>
               </li>
-              <li className="text-stone-400">
-                Anand Nagar, Vasant Vihar
-                <br />
-                Ujjain, MP 456010
-                <br />
-                INDIA
+              <li className="flex items-center">
+                <i className='bx bx-phone text-secondary mr-3'></i>
+                <span className="text-neutral-300">+1 (555) 987-6543</span>
+              </li>
+              <li className="flex items-center">
+                <i className='bx bx-envelope text-secondary mr-3'></i>
+                <span className="text-neutral-300">info@arcology.com</span>
               </li>
             </ul>
           </div>
         </div>
-
-        <div className="mt-12 pt-8 border-t border-stone-800">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-stone-400">
-              © {new Date().getFullYear()} ArchVision. All rights reserved.
-            </p>
-            <div className="flex space-x-6 mt-4 md:mt-0">
-              <Link
-                to="/privacy"
-                className="text-stone-400 hover:text-white transition-colors"
-              >
-                Privacy Policy
-              </Link>
-              <Link
-                to="/terms"
-                className="text-stone-400 hover:text-white transition-colors"
-              >
-                Terms of Service
-              </Link>
-            </div>
+        
+        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-neutral-300 text-sm mb-4 md:mb-0">
+            &copy; {new Date().getFullYear()} Arcology. All rights reserved.
+          </p>
+          <div className="flex space-x-6">
+            <a href="#" className="text-neutral-300 hover:text-secondary text-sm transition-colors">Privacy Policy</a>
+            <a href="#" className="text-neutral-300 hover:text-secondary text-sm transition-colors">Terms of Service</a>
+            <a href="#" className="text-neutral-300 hover:text-secondary text-sm transition-colors">Cookies Policy</a>
           </div>
         </div>
       </div>
     </footer>
   );
-}
+};
+
+export default Footer;
